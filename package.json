@@ -1,0 +1,36 @@
+{
+  "name": "chat-application",
+  "version": "1.0.0",
+  "description": "Node.js Chat Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "SET NODE_ENV=development& nodemon app.js",
+    "prod": "SET NODE_ENV=production& node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mhasanjoy/chat-application.git"
+  },
+  "author": "Md. Mehedi Hasan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mhasanjoy/chat-application/issues"
+  },
+  "homepage": "https://github.com/mhasanjoy/chat-application#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-validator": "^7.0.1",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.3.3",
+    "multer": "^1.4.5-lts.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
