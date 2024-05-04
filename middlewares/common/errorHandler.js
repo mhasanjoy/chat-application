@@ -13,7 +13,7 @@ function errorHandler(err, req, res, next) {
 
   if (res.locals.html) {
     res.render("error", {
-      title: "Error page",
+      title: "Error - Chat Application",
     });
   } else {
     res.json(res.locals.error);
