@@ -4,9 +4,15 @@
 
   <body>
     <div class="menu">
+      <% if(loggedInUser && loggedInUser.username){ %>
+      <div class="menu-item"><a href="/inbox">Inbox</a></div>
+      <div class="menu-item"><a href="/users">Users</a></div>
+      <div class="menu-item"><a href="#" onclick="logout()">Logout</a></div>
+      <% } else { %>
       <div class="menu-item"><a href="/inbox">Inbox</a></div>
       <div class="menu-item"><a href="/users">Users</a></div>
       <div class="menu-item"><a href="/">Login</a></div>
+      <% } %>
     </div>
 
     <div class="manageUser-container">
@@ -72,6 +78,22 @@
           deleteToast.showToast();
           document.getElementById(userId).remove();
         }
+      }
+    </script>
+
+    <script>
+      const logoutToast = Toastify({
+        text: "You are being logged out...",
+        duration: 1000,
+      });
+
+      function logout() {
+        fetch("/", { method: "DELETE" });
+
+        logoutToast.showToast();
+        setTimeout(() => {
+          window.location.replace("/");
+        }, 1000);
       }
     </script>
   </body>
