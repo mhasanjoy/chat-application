@@ -3,14 +3,22 @@ const { getUsers, addUser, removeUser } = require("../controllers/usersControlle
 const decorateHtmlResponse = require("../middlewares/common/decorateHtmlResponse");
 const avatarUpload = require("../middlewares/users/avatarUpload");
 const { addUserValidators, addUserValidationHandler } = require("../middlewares/users/userValidators");
-const { checkLogin } = require("../middlewares/common/checkLogin");
+const { checkLogin, requireRole } = require("../middlewares/common/checkLogin");
 
 const router = express.Router();
 
-router.get("/", decorateHtmlResponse("Users"), checkLogin, getUsers);
+router.get("/", decorateHtmlResponse("Users"), checkLogin, requireRole(["admin"]), getUsers);
 
-router.post("/", checkLogin, avatarUpload, addUserValidators, addUserValidationHandler, addUser);
+router.post(
+  "/",
+  checkLogin,
+  requireRole(["admin"]),
+  avatarUpload,
+  addUserValidators,
+  addUserValidationHandler,
+  addUser
+);
 
-router.delete("/:id", removeUser);
+router.delete("/:id", checkLogin, requireRole(["admin"]), removeUser);
 
 module.exports = router;

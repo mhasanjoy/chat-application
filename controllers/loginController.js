@@ -16,10 +16,11 @@ async function login(req, res, next) {
 
       if (isValidPassword) {
         const userObject = {
+          userid: user._id,
           username: user.name,
           email: user.email,
-          mobile: user.mobile,
-          role: "user",
+          avatar: user.avatar || null,
+          role: user.role || "user",
         };
 
         const token = jwt.sign(userObject, process.env.JWT_SECRET, {
